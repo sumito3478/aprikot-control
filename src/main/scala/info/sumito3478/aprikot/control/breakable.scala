@@ -20,8 +20,6 @@ object breakable {
   class Dummy0
   implicit object dummy0 extends Dummy0
   
-  trait Nil extends Any
-  
   def apply[A <: AnyRef](op: (A => Nothing) => A): A = {
     op({
       a: A =>
