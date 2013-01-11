@@ -19,21 +19,21 @@ package info.sumito3478.aprikot.control
 object breakable {
   class Dummy0
   implicit object dummy0 extends Dummy0
-  
+
   def apply[A <: AnyRef](op: (A => Nothing) => A): A = {
     op({
       a: A =>
         return a
     })
   }
-  
+
   def apply[A <: AnyVal](op: (A => Nothing) => A)(implicit dummy0: Dummy0): A = {
     op({
       a: A =>
         return a
     })
   }
-  
+
   def apply[A <: __](op: (=> Nothing) => Unit): Unit = {
     op({ return })
   }
