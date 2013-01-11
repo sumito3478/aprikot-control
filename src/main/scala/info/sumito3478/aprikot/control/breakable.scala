@@ -16,6 +16,41 @@
 
 package info.sumito3478.aprikot.control
 
+/**
+ * Pass 'break' function that causes early or non-local exits when called.
+ *
+ * This function object is similar to
+ * '''[[scala.util.control.Breaks.breakable]]''', but the break function is passed
+ * as parameter. It also supports returning value with break.
+ * {{{
+ * import info.sutmio3478.aprikot.control.breakable
+ * val j = true
+ * val i = breakable[Int] {
+ *   break =>
+ *     if(j)
+ *       break 0
+ *     1
+ * }
+ * // i == 0
+ * }}}
+ *
+ * Do not use breakable[Unit] to break without returning value. Use
+ * '''breakable[`_``_`]''' instead. It passes '''=> Nothing''' instead of
+ * '''Unit => Nothing'''.
+ * {{{
+ * import info.sumito3478.aprikot.control.{breakable, __}
+ * breakable[__] {
+ *   break =>
+ *     break // Correct.
+ *     // break() causes compilation error!
+ * }
+ * breakable[Unit] {
+ *   break =>
+ *     break // Wrong, but does not cause compilation error!
+ *     break() // Correct.
+ * }
+ * }}}
+ */
 object breakable {
   class Dummy0
   implicit object dummy0 extends Dummy0
