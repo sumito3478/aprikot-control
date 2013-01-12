@@ -19,6 +19,42 @@ package info.sumito3478.aprikot.control
 import scala.collection.Iterator
 import scala.util.continuations.{ cps, reset, shift }
 
+/**
+ * A generator implementation with delimited continuation.
+ *
+ * Example usage:
+ * {{{
+ * import info.sumito3478.aprikot.control.generator
+ * import generator.susp
+ *
+ * val it = generator[Int] {
+ *   yields =>
+ *     yields(0)
+ *     yields(1)
+ *     yields(2)
+ *     yields(3)
+ * } // => 0, 1, 2, 3
+ *
+ * val it2 = generator[Int] {
+ *   yields =>
+ *     var i = 0
+ *     while(i < 4) {
+ *       yields(i)
+ *     }
+ * } // => 0, 1, 2, 3
+ *
+ * val it3 = generator[Int] {
+ *   yields =>
+ *     def loop(i: Int): Unit @susp[Int] = {
+ *       if(i < 4) {
+ *         yields(i)
+ *         loop(i + 1)
+ *       }
+ *     }
+ * } // => 0, 1, 2, 3
+ * }}}
+ *
+ */
 object generator {
   sealed trait Generation[+A]
 
