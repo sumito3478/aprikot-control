@@ -8,9 +8,12 @@ object AprikotControlBuild extends Build {
     base = file(".")
   ).settings(
     Seq(
-      version := "0.0.1",
+      version := "0.0.2",
       scalaVersion := "2.10.0",
+      autoCompilerPlugins := true,
+      addCompilerPlugin("org.scala-lang.plugins" % "continuations" % "2.10.0"),
       scalacOptions ++= Seq(
+        "-P:continuations:enable",
         "-target:jvm-1.6",
         "-deprecation",
         "-feature",
