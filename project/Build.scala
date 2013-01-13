@@ -11,7 +11,7 @@ object AprikotControlBuild extends Build {
   ).settings(StandardProject.newSettings :_*
   ).settings(
     Seq(
-      version := "0.0.5"
+      version := "0.0.6"
     ): _*
   )
 
