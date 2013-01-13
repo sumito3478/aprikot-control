@@ -26,6 +26,16 @@ class PipeOperatorSpec extends FunSpec {
       val i = -1 |> math.abs
       assert(i === 1)
     }
+
+    it("support pipelining with multiple functions") {
+      def function1(x: Int) = x + 1
+
+      def function2(x: Int) = x * 2
+
+      val result = 100 |> function1 |> function2
+
+      assert(result === 202)
+    }
   }
 
   describe("||>") {
