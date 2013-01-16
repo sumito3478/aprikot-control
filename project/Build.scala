@@ -3,7 +3,7 @@ import Keys._
 
 import info.sumito3478.aprikot.sbt._
 
-object AprikotControlBuild extends Build {
+object build extends Build {
 
   lazy val project = Project(
     id = "aprikot-control",
@@ -11,7 +11,9 @@ object AprikotControlBuild extends Build {
   ).settings(StandardProject.newSettings :_*
   ).settings(
     Seq(
-      version := "0.0.6"
+      libraryDependencies ++= Seq(
+        ),
+      version := "0.0.7"
     ): _*
   )
 
